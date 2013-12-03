@@ -1,5 +1,5 @@
 /*
- *  Program:  encryptor
+ *  Program:  Cencryptor
  *  Author:   Chris Brewer
  *  Date:     10/30/2013
  *
@@ -23,15 +23,15 @@ using namespace std;
  * @param: string file - the name of the file
  * @param: int edFlag - the flag indicating whether encryping (1) or decrypting (-1);
  */
-string getOutFileName(string file, int edFlag){
+string getOutFileName(string file, int edFlag) {
     // remove the 'e_' or 'd_' file prefixes if they exist from the original filename string
     string outFile = file;
-    if(file.substr(0,2) == "e_" || file.substr(0,2) == "d_"){
+    if(file.substr(0,2) == "e_" || file.substr(0,2) == "d_") {
         outFile = outFile.substr(2, outFile.length());
     }
 
     // add the appropriate prefix whether encrypting or decrypting
-    if (edFlag == 1){
+    if (edFlag == 1) {
         outFile = "e_" + outFile;
     }
     else if (edFlag == -1) {
@@ -47,10 +47,10 @@ string getOutFileName(string file, int edFlag){
 /*  Function to encrypt/decrypt based on the flag value passed in
  *  If encrypting, then all characters in the text file are changed to their acsii value +1
  *  If decrypting, then all characters in the text file are changed to their acsii value -1
- * @param: string file - the name of the file
- * @param: int edFlag - the flag indicating whether encryping (1) or decrypting (-1);
+ *  @param: string file - the name of the file
+ *  @param: int edFlag - the flag indicating whether encryping (1) or decrypting (-1);
  */
-void encrypt_decrypt(string file, int edFlag){
+void encrypt_decrypt(string file, int edFlag) {
     string output = "";
     char ch;
 
@@ -116,7 +116,7 @@ bool validInput(string nameOfFile, string argument) {
 }
 
 /*The main entry point of the program; this is where execution begins.*/
-int main(int argc, char* argv[]){
+int main(int argc, char* argv[]) {
 
     // Check to make sure the correct number of arguments were received from the command line
     if (argc < 3) {
@@ -128,19 +128,19 @@ int main(int argc, char* argv[]){
     string arg = argv[2];
 
     // Validate input
-    if (!validInput(filename, arg)){
+    if (!validInput(filename, arg)) {
         printUsageAndTerminate();
     }
 
     // Encrypt or Decrypt based on argument received
-    if (arg == "-e"){
+    if (arg == "-e") {
         encrypt_decrypt(filename, 1);
     }
-    else if (arg == "-d"){
+    else if (arg == "-d") {
         encrypt_decrypt(filename, -1);
     }
-    else{
-        cerr << "Argument passed validation when it shouldn't" << endl;
+    else {
+        cerr << "Error:  Argument passed validation when it shouldn't" << endl;
         exit(-1);
     }
 
